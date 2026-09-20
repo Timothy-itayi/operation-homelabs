@@ -1,0 +1,19 @@
+services:
+  lldap:
+    image: lldap/lldap:stable
+    container_name: itops-lldap
+    environment:
+      TZ: Australia/Melbourne
+      LLDAP_JWT_SECRET: ${LLDAP_JWT_SECRET}
+      LLDAP_KEY_SEED: ${LLDAP_KEY_SEED}
+      LLDAP_LDAP_BASE_DN: dc=homelab,dc=internal
+      LLDAP_LDAP_USER_PASS: ${LLDAP_ADMIN_PASSWORD}
+    ports:
+      - "127.0.0.1:17170:17170"
+      - "127.0.0.1:3890:3890"
+    volumes:
+      - lldap-data:/data
+    restart: unless-stopped
+
+volumes:
+  lldap-data:

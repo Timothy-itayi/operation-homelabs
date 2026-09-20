@@ -1,10 +1,9 @@
-# IT Operations Homelab
+# Projects
 
-Docker-based help desk lab containing:
-
-- osTicket
-- LLDAP
-- Uptime Kuma
-
-The lab demonstrates ticket handling, identity administration, monitoring,
-outage simulation, troubleshooting, and operational documentation.
+| Path | Purpose |
+| --- | --- |
+| [docs/](docs/README.md) | Hiring-manager case study |
+| [evidence/](evidence/README.md) | Screenshots |
+| [osticket/](osticket/compose.yaml) | Help desk + MariaDB |
+| [lldap/](lldap/compose.yaml) | Identity directory |
+| uptime-kuma/ | Monitoring (not started) |

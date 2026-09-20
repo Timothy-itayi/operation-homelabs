@@ -1,0 +1,45 @@
+services:
+  mariadb:
+    image: mariadb:11
+    container_name: itops-mariadb
+    environment:
+      MARIADB_RANDOM_ROOT_PASSWORD: "yes"
+      MARIADB_DATABASE: osticket
+      MARIADB_USER: osticket
+      MARIADB_PASSWORD: ${OST_DB_PASSWORD}
+    volumes:
+      - osticket-db:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  osticket:
+    image: rinkp/osticket-dockerized:1.18.4
+    container_name: itops-osticket
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    environment:
+      OST_SECRET_SALT: ${OST_SECRET_SALT}
+      OST_ADMIN_EMAIL: ${OST_ADMIN_EMAIL}
+      OST_ADMIN_PASSWD: ${OST_ADMIN_PASSWD}
+      OST_HELPDESK_URL: http://localhost:8080
+      OST_HELPDESK_ONLINE: "true"
+      OST_DBTYPE: mysql
+      OST_DBHOST: mariadb
+      OST_DBNAME: osticket
+      OST_DBUSER: osticket
+      OST_DBPASS: ${OST_DB_PASSWORD}
+      OST_TABLE_PREFIX: ost_
+    ports:
+      - "127.0.0.1:8080:80"
+    volumes:
+      - osticket-attachments:/var/www/attachments
+    restart: unless-stopped
+
+volumes:
+  osticket-db:
+  osticket-attachments:
