@@ -1,8 +1,9 @@
 # IT Operations Homelab
 
+I built a local IT operations lab with Docker Compose. osTicket handles incidents and a small knowledge base, LLDAP gives me a directory to practise users, groups and password changes, and Uptime Kuma monitors the local services plus my Azure portfolio. I created realistic help desk tickets, documented the resolution process, then deliberately stopped osTicket and used monitoring plus Docker logs to detect and recover the outage. I kept everything local and reproducible so the project costs essentially nothing to run.
+
 Local help desk lab: **osTicket + MariaDB** on Docker, used as a real queue — not a screenshot of a login page.
 
-The work completed so far is the part a hiring manager can actually probe:
 
 1. Stand up the desk as Compose (secrets out of Git, database unpublished, app on `127.0.0.1:8080`).
 2. Recover the first boot when MariaDB initialized with a blank password and osTicket entered a restart loop.
