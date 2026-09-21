@@ -1,0 +1,35 @@
+name: Validate Docker Compose
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create non-secret CI env for osTicket
+        run: |
+          cp osticket/.env.example osticket/.env
+
+      - name: Create non-secret CI env for LLDAP
+        run: |
+          cp lldap/.env.example lldap/.env
+
+      - name: Validate osTicket compose
+        run: docker compose -f osticket/compose.yaml --env-file osticket/.env config
+
+      - name: Validate LLDAP compose
+        run: docker compose -f lldap/compose.yaml --env-file lldap/.env config
+
+      - name: Validate Uptime Kuma compose
+        run: docker compose -f uptime-kuma/compose.yaml config

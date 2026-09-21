@@ -57,7 +57,7 @@ The `--env-file` flag is deliberate. Compose will load a local `.env` automatica
 ```text
 grep -E '^OST_' .env | cut -d= -f1
 docker compose --env-file .env config >/dev/null && echo "Compose configuration OK"
-```
+``` 
 
 ### Security / operational considerations
 
