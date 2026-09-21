@@ -48,6 +48,9 @@ cd ../uptime-kuma
 docker compose up -d
 ```
 
+<img width="3251" height="3555" alt="diagram" src="https://github.com/user-attachments/assets/037db8b8-a0c3-4781-9c19-fdff6f8b5749" />
+
+
 CI copies the example env files and runs `docker compose config` for each stack on push/PR.
 
 ## Limits
