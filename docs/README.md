@@ -11,7 +11,7 @@ How the stack was built, what broke, and how tickets were worked. Screenshots li
 | [05 — Uptime Kuma](05-uptime-kuma.md) | Monitors, status page, simulated outage |
 | [Evidence log](evidence-log.md) | Image index |
 
-<img width="3711" height="4066" alt="diagram (2)" src="https://github.com/user-attachments/assets/7fe009a5-ce28-4adc-bcb8-7a3e23cb2489" />
+<img width="171" height="266" alt="diagram" src="https://github.com/user-attachments/assets/7fe009a5-ce28-4adc-bcb8-7a3e23cb2489" />
 
 
 Compose files: [osticket](../osticket/compose.yaml) · [lldap](../lldap/compose.yaml) · [uptime-kuma](../uptime-kuma/compose.yaml)
